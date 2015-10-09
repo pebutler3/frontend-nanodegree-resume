@@ -85,12 +85,12 @@ function logClicks(x,y) {
   console.log('x location: ' + x + '; y location: ' + y);
 }
 
-// $(document).click(function(loc) {
-// var x = loc.pageX;
-// var y = loc.pageY;
+$(document).click(function(loc) {
+var x = loc.pageX;
+var y = loc.pageY;
 
-// logClicks(x, y);
-// });
+logClicks(x, y);
+});
 
 
 
