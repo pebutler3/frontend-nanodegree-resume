@@ -12,7 +12,9 @@ var bio = {
 	'welcomeMessage' : 'Welcome to my resume!',
 	'skills' : [
       'HTML',
-      'CSS'
+      'CSS',
+      'Web Design',
+      'Front-End Development'
 	],
 	display : function () {
 		var header = $('#header'),
@@ -60,7 +62,14 @@ var work = {
 			'title' : 'Director, Design & Development',
 			'dates' : '2012 - Present',
 			'location' : 'Denver, Colorado',
-			'description': 'I build dem sites!'
+			'description': 'I design, develop, and maintain 20+ client websites for CAP Management.'
+		},
+		{
+			'employer' : 'The HOA Website Company',
+			'title' : 'Director of Design',
+			'dates' : '2013 - Present',
+			'location' : 'Denver, Colorado',
+			'description': 'Not only do I aid in client acquisition, but I design & develop custom sites for each client to fit their specific needs.'
 		}
 	],
 	display: function () {
@@ -90,19 +99,19 @@ var projects = {
 			"title" : "Maloney Painting",
 			"dates" : "07/15-09/15",
 			"description" : "stuffs",
-			"images" : []
+			"images" : ['images/cap.png']
 		},
 		{ 
 			"title" : "Woodruff Tree Service",
 			"dates" : "07/15-09/15",
 			"description" : "stuffs",
-			"images" : []
+			"images" : ['images/woodruff.png']
 		},
 		{ 
 			"title" : "Horizon West",
 			"dates" : "07/15-09/15",
 			"description" : "stuffs",
-			"images" : []
+			"images" : ['images/horizon.png']
 		}
 	]
 }
@@ -148,10 +157,11 @@ projects.display = function () {
 		$('.project-entry:last').append(formattedDates);
 		var formattedDescription = HTMLprojectDescription.replace('%data%', projects.projects[project].description);
 		$('.project-entry:last').append(formattedDescription);
+		// var formattedImage = HTMLprojectImage.replace('%data%', projects.projects[project].)
 
-		if(projects.projects[project].images > 0) {
+		if(projects.projects[project]) {
 			for(image in projects.projects[project].images) {
-				var formattedImage = HTMLprojectImage.replace('%data%', projects.projects[project].Image);
+				var formattedImage = HTMLprojectImage.replace('%data%', projects.projects[project].images);
 				$('.project-entry:last').append(formattedImage);
 			}
 		}
