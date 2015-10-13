@@ -1,3 +1,4 @@
+// Bio JSON
 var bio = {
 	'name' : 'Paul Butler III',
 	'role' : 'Front-End Developer',
@@ -54,7 +55,7 @@ var bio = {
 		}
 	}
 }
-
+// Work JSON
 var work = {
 	"jobs" : [
 		{
@@ -76,12 +77,12 @@ var work = {
 		for(job in work.jobs) {
 			$('#workExperience').append(HTMLworkStart);
 
-			var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer);
-			var formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title);
-			var formattedDates = HTMLworkDates.replace('%data%', work.jobs[job].dates);
-			var formattedLocation = HTMLworkLocation.replace('%data%', work.jobs[job].location);
-			var formattedDescription = HTMLworkDescription.replace('%data%', work.jobs[job].description);
-			var formattedEmployerTitle = formattedEmployer + formattedTitle;
+			var formattedEmployer = HTMLworkEmployer.replace('%data%', work.jobs[job].employer),
+				formattedTitle = HTMLworkTitle.replace('%data%', work.jobs[job].title),
+				formattedDates = HTMLworkDates.replace('%data%', work.jobs[job].dates),
+				formattedLocation = HTMLworkLocation.replace('%data%', work.jobs[job].location),
+				formattedDescription = HTMLworkDescription.replace('%data%', work.jobs[job].description),
+				formattedEmployerTitle = formattedEmployer + formattedTitle;
 
 			$('.work-entry:last').append([
 				formattedEmployerTitle,
@@ -92,11 +93,11 @@ var work = {
 		}
 	}
 }
-
+// Projects JSON
 var projects = {
 	"projects" : [
 		{ 
-			"title" : "Maloney Painting",
+			"title" : "CAP Management",
 			"dates" : "07/15-09/15",
 			"description" : "stuffs",
 			"images" : ['images/cap.png']
@@ -113,7 +114,28 @@ var projects = {
 			"description" : "stuffs",
 			"images" : ['images/horizon.png']
 		}
-	]
+	],
+	display: function(){
+		for(project in projects.projects) {
+			$('#projects').append(HTMLprojectStart);
+			var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title),
+				formattedDates = HTMLprojectDates.replace('%data%', projects.projects[project].dates),
+				formattedDescription = HTMLprojectDescription.replace('%data%', projects.projects[project].description),
+				formattedImage = HTMLprojectImage.replace('%data%', projects.projects[project].images);
+
+            $('.project-entry:last').append([
+            	formattedTitle,
+            	formattedDates,
+            	formattedDescription
+            ]); 
+
+			if(projects.projects[project]) {
+				for(image in projects.projects[project].images) {
+					$('.project-entry:last').append(formattedImage);
+				}
+			}
+		}
+	}
 }
 
 
@@ -121,16 +143,70 @@ var projects = {
 var education = { 
 	"schools" : [
 		{
-			"name" : "Free Code Camp",
-			"city" : "San Francisco",
-			"location" : "Online"
+			"name" : "Clark State",
+			"location" : "Springfield, Ohio",
+			"degree" : "na",
+			"major" : ['Fine Arts'],
+			"dates" : "2009-2010 "
+		}
+	],
+	onlineClasses:  [
+		{
+			"title" : "Computer Science 101",
+			"school" : "Stanford University",
+			"date" : "May 28th 2015",
+			"url" : "https://verify.lagunita.stanford.edu/SOA/b4e0fac9ef6a41d587d08b5eba57836a/"
 		},
 		{
-			"name" : "Udacity",
-			"city" : "San Francisco",
-			"location" : "Online"
+			"title" : "1 Hour JavaScript",
+			"school" : "Udemy",
+			"date" : "May 7th 2014",
+			"url" : "http://ude.my/UC-LECDLXMR"
+		},
+		{
+			"title" : "Comprehensive JavaScript Programming",
+			"school" : "Udemy",
+			"date" : "May 21st 2014",
+			"url" : "http://ude.my/UC-WT76MYI1"
 		}
-	]
+	],
+	displaySchools: function(){
+	  for(school in education.schools) {
+	  	$('#education').append(HTMLschoolStart);
+
+	  	var formattedSchoolName = HTMLschoolName.replace('%data%', education.schools[school].name),
+	  		formattedSchoolLocation = HTMLschoolLocation.replace('%data%', education.schools[school].location),
+	  		formattedSchoolDegree = HTMLschoolDegree.replace('%data%', education.schools[school].degree),
+	  		formattedSchoolMajor = HTMLschoolMajor.replace('%data%', education.schools[school].major),
+	  		formattedSchoolDates = HTMLschoolDates.replace('%data%', education.schools[school].dates);
+
+	  	$('.education-entry:last').append([
+	  		formattedSchoolName,
+	  		formattedSchoolLocation,
+	  		formattedSchoolDegree,
+	  		formattedSchoolMajor,
+	  		formattedSchoolDates
+	  	]);
+	}
+  },
+	displayOnlineClasses: function(){
+		$('#education').append(HTMLonlineClasses);
+	  	$("#education").append(HTMLschoolStart);
+	  	for(classes in education.onlineClasses) {
+
+	  		var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', education.onlineClasses[classes].title),
+	  			formattedOnlineSchool = HTMLonlineSchool.replace('%data%', education.onlineClasses[classes].school),
+	  			formattedOnlineDates = HTMLonlineDates.replace('%data%', education.onlineClasses[classes].date),
+	  			formattedOnlineURL = HTMLonlineURL.replace('%data%', education.onlineClasses[classes].url);
+
+	  		$('.education-entry:last').append([
+		  		formattedOnlineTitle,
+		  		formattedOnlineSchool,
+		  		formattedOnlineDates,
+		  		formattedOnlineURL
+	  		]);
+	  	}
+	}
 }
 
 
@@ -145,28 +221,12 @@ function inName() {
 }
 inName(bio.name);
 
-$('#main').append(internationalizeButton);
+// $('#main').append(internationalizeButton);
 $('#mapDiv').append(googleMap);
 
-projects.display = function () {
-	for(project in projects.projects) {
-		$('#projects').append(HTMLprojectStart);
-		var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-		$('.project-entry:last').append(formattedTitle);
-		var formattedDates = HTMLprojectDates.replace('%data%', projects.projects[project].dates);
-		$('.project-entry:last').append(formattedDates);
-		var formattedDescription = HTMLprojectDescription.replace('%data%', projects.projects[project].description);
-		$('.project-entry:last').append(formattedDescription);
-		// var formattedImage = HTMLprojectImage.replace('%data%', projects.projects[project].)
 
-		if(projects.projects[project]) {
-			for(image in projects.projects[project].images) {
-				var formattedImage = HTMLprojectImage.replace('%data%', projects.projects[project].images);
-				$('.project-entry:last').append(formattedImage);
-			}
-		}
-	}
-}
 bio.display();
 work.display();
 projects.display();
+education.displaySchools();
+education.displayOnlineClasses();

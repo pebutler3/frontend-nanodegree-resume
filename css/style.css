@@ -164,6 +164,9 @@ span {
   padding: 5px;
 }
 
+.project-entry img {
+  padding: 0;
+}
 #lets-connect {
   text-align: center;
 }
