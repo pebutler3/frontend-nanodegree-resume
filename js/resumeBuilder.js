@@ -188,25 +188,23 @@ var education = {
 	  		formattedSchoolDates
 	  	]);
 	}
-  },
-	displayOnlineClasses: function(){
-		$('#education').append(HTMLonlineClasses);
-	  	$("#education").append(HTMLschoolStart);
-	  	for(classes in education.onlineClasses) {
+	$('#education').append(HTMLonlineClasses);
+  	$("#education").append(HTMLschoolStart);
+  	for(classes in education.onlineClasses) {
 
-	  		var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', education.onlineClasses[classes].title),
-	  			formattedOnlineSchool = HTMLonlineSchool.replace('%data%', education.onlineClasses[classes].school),
-	  			formattedOnlineDates = HTMLonlineDates.replace('%data%', education.onlineClasses[classes].date),
-	  			formattedOnlineURL = HTMLonlineURL.replace('%data%', education.onlineClasses[classes].url);
+	var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', education.onlineClasses[classes].title),
+		formattedOnlineSchool = HTMLonlineSchool.replace('%data%', education.onlineClasses[classes].school),
+		formattedOnlineDates = HTMLonlineDates.replace('%data%', education.onlineClasses[classes].date),
+		formattedOnlineURL = HTMLonlineURL.replace('%data%', education.onlineClasses[classes].url);
 
-	  		$('.education-entry:last').append([
-		  		formattedOnlineTitle,
-		  		formattedOnlineSchool,
-		  		formattedOnlineDates,
-		  		formattedOnlineURL
-	  		]);
-	  	}
-	}
+	$('.education-entry:last').append([
+		formattedOnlineTitle,
+		formattedOnlineSchool,
+		formattedOnlineDates,
+		formattedOnlineURL
+	]);
+  	}
+  }
 }
 
 
@@ -229,4 +227,3 @@ bio.display();
 work.display();
 projects.display();
 education.displaySchools();
-education.displayOnlineClasses();
